@@ -25,7 +25,7 @@ Prerequisite: The user has logged in in UC02
 Flow: Displays the real-time market data and the users' portfolio. Tapping a stock block opens UC04.
 
 UC04 Detailed Stock Page
-Prerequisite: User has entered index page in UC03
+Prerequisite: The user is on UC03 or UC06
 Flow: If the user taps a stock block, a new page opens up and shows more detailed info of the stock, including current price, price changes, historical data, users' positions, etc. The user can press UP button to go back to UC03. There are buttons to purchase/sell the current stock, which is UC05. If the market is closed, the buttons are grey and users will be notified.
 
 UC05 Buy/Sell Stock
@@ -33,14 +33,13 @@ Prerequisite: The user has entered detailed stock page in UC04
 Flow: The user clicks on the "Buy/Sell" button on the detailed stock page. The user selects whether he or she want to sell or buy. The user will enter the amount of stock to buy or sell using a seek bar. The user's cash and stock will change accordingly.
 
 UC06 Portfolio
+Prerequisite: The user is on UC03
+Flow: The user clicks on the second button on the navigation bar, and their portfolio will show up. Tapping any data block brings up UC04.
 
 UC07 Profile Page
+Prerequisite: The user is on UC03
+Flow: The user clicks on the profile page button on the navigation bar, and their profile information will show up. They can enter UC08 by tapping “Settings” button.
 
-UC08 Account Info Change Page
-
-
-
-
-
-
-
+UC08 Settings
+Prerequisite: The user is on UC07
+Flow: The user can change their settings on this page.
