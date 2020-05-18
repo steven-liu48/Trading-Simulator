@@ -30,4 +30,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <ListView
+            android:id="@+id/simpleListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="#000"
+            android:dividerHeight="2dp"
+            android:listSelector="#600"/>
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
