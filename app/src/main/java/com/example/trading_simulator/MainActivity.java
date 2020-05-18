@@ -7,6 +7,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.example.trading_simulator.stock_price.RandomStockPriceGenerator;
+import com.example.trading_simulator.stock_price.StockPriceAccesser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        StockPriceAccesser accesser = new RandomStockPriceGenerator();
         simpleListView=(ListView)findViewById(R.id.simpleListView);
 
         ArrayList<HashMap<String,String>> arrayList=new ArrayList<>();
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         {
             HashMap<String,String> hashMap=new HashMap<>();//create a hashmap to store the data in key value pair
             hashMap.put("name",stockName[i]);
-            hashMap.put("image",price[i]+"");
+            hashMap.put("image",accesser.getCurrentPrice(stockName[i])+"");
             arrayList.add(hashMap);//add the hashmap into arrayList
         }
         String[] from={"name","image"};//string array
