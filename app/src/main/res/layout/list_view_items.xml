@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Demo"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="29dp"
+        android:layout_toStartOf="@+id/priceChange"
+        android:layout_toLeftOf="@+id/priceChange"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Demo"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/priceChange"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="0dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Demo"
+        android:textColor="#000" />
+
+</RelativeLayout>
