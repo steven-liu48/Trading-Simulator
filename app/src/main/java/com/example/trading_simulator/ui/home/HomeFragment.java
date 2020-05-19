@@ -30,23 +30,10 @@ public class HomeFragment extends Fragment {
 
 
     String[] stockName = {"APPL", "BA", "BLK", "TSLA", "GOOGL","GS", "MS", "JPM", "AAL", "CVX","XOM", "NFLX", "ZM", "DAL", "UBER"};//fruit names array
-    int[] price ={111, 222, 333, 444, 555, 111, 222, 333, 444, 555, 111, 222, 333, 444, 555};
     ListView simpleListView;
     SwipeRefreshLayout swipeRefreshLayout;
-    private FragmentActivity myContext;
 
     private HomeViewModel homeViewModel;
-
-//    public void onAttach(Activity activity) {
-//
-//        if (activity instanceof FragmentActivity) {
-//            myContext = (FragmentActivity) activity;
-//
-//
-//        }
-//
-//        super.onAttach(activity);
-//    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -108,7 +95,6 @@ public class HomeFragment extends Fragment {
             hashMap.put("price",String.format("$%.2f", accesser.getCurrentPrice(stockName[i])));
             arrayList.add(hashMap);//add the hashmap into arrayList
         }
-        System.out.println("Refreshed");
         String[] from={"name","price"};//string array
         int[] to={R.id.name,R.id.price};//int array of views id's
         SimpleAdapter simpleAdapter=new SimpleAdapter(getContext(),arrayList,R.layout.list_view_items,from,to);//Create object and set the parameters for simpleAdapter

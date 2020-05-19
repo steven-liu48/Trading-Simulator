@@ -23,8 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    String[] stockName = {"APPL", "BA", "BLK", "TSLA", "GOOGL","GS", "MS", "JPM", "AAL", "CVX","XOM", "NFLX", "ZM", "DAL", "UBER"};//fruit names array
-    int[] price ={111, 222, 333, 444, 555, 111, 222, 333, 444, 555, 111, 222, 333, 444, 555};
     ListView simpleListView;
     SwipeRefreshLayout swipeRefreshLayout;
 
