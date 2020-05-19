@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         }
         System.out.println("Refreshed");
         String[] from={"name","price"};//string array
-        int[] to={R.id.textView,R.id.textView2};//int array of views id's
+        int[] to={R.id.name,R.id.price};//int array of views id's
         SimpleAdapter simpleAdapter=new SimpleAdapter(this,arrayList,R.layout.list_view_items,from,to);//Create object and set the parameters for simpleAdapter
         simpleListView.setAdapter(simpleAdapter);//sets the adapter for listView
 
