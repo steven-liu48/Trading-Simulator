@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    String[] stockName = {"Apple", "Banana", "Litchi", "Mango", "PineApple","Apple", "Banana", "Litchi", "Mango", "PineApple","Apple", "Banana", "Litchi", "Mango", "PineApple"};//fruit names array
+    String[] stockName = {"APPL", "BA", "BLK", "TSLA", "GOOGL","GS", "MS", "JPM", "AAL", "CVX","XOM", "NFLX", "ZM", "DAL", "UBER"};//fruit names array
     int[] price ={111, 222, 333, 444, 555, 111, 222, 333, 444, 555, 111, 222, 333, 444, 555};
     ListView simpleListView;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -86,14 +86,15 @@ public class MainActivity extends AppCompatActivity {
         {
             HashMap<String,String> hashMap=new HashMap<>();//create a hashmap to store the data in key value pair
             hashMap.put("name",stockName[i]);
-            hashMap.put("image",accesser.getCurrentPrice(stockName[i])+"");
+            hashMap.put("price",String.format("$%.2f", accesser.getCurrentPrice(stockName[i])));
             arrayList.add(hashMap);//add the hashmap into arrayList
         }
-        System.out.println("Refresh");
-        String[] from={"name","image"};//string array
+        System.out.println("Refreshed");
+        String[] from={"name","price"};//string array
         int[] to={R.id.textView,R.id.textView2};//int array of views id's
         SimpleAdapter simpleAdapter=new SimpleAdapter(this,arrayList,R.layout.list_view_items,from,to);//Create object and set the parameters for simpleAdapter
         simpleListView.setAdapter(simpleAdapter);//sets the adapter for listView
+
     }
 
 }
