@@ -2,10 +2,11 @@ package com.example.trading_simulator.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.trading_simulator.DAOHelper.DAOHelper;
+
+import java.util.HashMap;
 
 public abstract class DAO {
     private DAOHelper myhelper;
@@ -14,30 +15,57 @@ public abstract class DAO {
         myhelper = new DAOHelper(context);
     }
 
+    public DAO(DAOHelper helper){
+        myhelper = helper;
+    }
+
+
+    public SQLiteDatabase getDatabase(){
+        return myhelper.getWritableDatabase();
+    }
+    /**
+     * Inset the data to the database
+     * @param content the data to insert
+     * @return the row ID of the newly inserted row, or -1 if an error occurred
+     */
     public long insertData(ContentValues content)
     {
         SQLiteDatabase dbb = myhelper.getWritableDatabase();
-        long id = dbb.insert(DAOHelper.TABLE_NAME, null , content);
-        return id;
+        return dbb.insert(DAOHelper.TABLE_NAME, null , content);
     }
 
-    public abstract String getData();
+    /**
+     * Return all the data associated with identifier.
+     * @param identifier identifier
+     * @return A HashMap from the name to the data
+     */
+    public abstract HashMap<String,String> getData(String identifier);
 
-    public  int delete(String uname)
+    /**
+     * Delete the row specified by identifier
+     * @param identifier identifier
+     * @return the number of rows affected if a whereClause is passed in, 0 otherwise. To
+     * remove all rows and get a count pass "1" as the whereClause.
+     */
+    public  int delete(String identifier)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
-        String[] whereArgs ={uname};
+        String[] whereArgs ={identifier};
 
-        int count =db.delete(DAOHelper.TABLE_NAME ,DAOHelper.ID+" = ?",whereArgs);
-        return  count;
+        return db.delete(DAOHelper.TABLE_NAME ,DAOHelper.ID+" = ?",whereArgs);
     }
 
-    public int update(ContentValues content, String oldUser)
+    /**
+     * Update the data specified by oldUser with content
+     * @param content The new data
+     * @param identifier The identifier of the old data
+     * @return the number of rows affected
+     */
+    public int update(ContentValues content, String identifier)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
-        String[] whereArgs= {oldUser};
-        int count =db.update(DAOHelper.TABLE_NAME,content, DAOHelper.ID+" = ?",whereArgs );
-        return count;
+        String[] whereArgs= {identifier};
+        return db.update(DAOHelper.TABLE_NAME,content, DAOHelper.ID+" = ?",whereArgs );
     }
 
 }

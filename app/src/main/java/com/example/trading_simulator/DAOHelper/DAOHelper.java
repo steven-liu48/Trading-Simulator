@@ -11,10 +11,10 @@ public class DAOHelper extends SQLiteOpenHelper {
         public static int DATABASE_Version;
         public static String ID;
         public static String CREATE_TABLE;
-        public static String DROP_TABLE;
+        public static String DROP_TABLE = "DROP TABLE IF EXISTS "+TABLE_NAME;
         private Context context;
 
-        public DAOHelper(Context context) {
+    public DAOHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_Version);
         this.context=context;
     }
