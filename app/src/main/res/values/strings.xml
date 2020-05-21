@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">trading_simulator</string>
+    <string name="app_name">Trading Simulator</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Portfolio</string>
     <string name="title_notifications">My Profile</string>

@@ -41,13 +41,18 @@ public class Registration extends AppCompatActivity {
     }
 
     boolean checkDataEntered(){
-        if (isEmpty(username)) {
-            Toast t = Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT);
+        if (isEmpty(username) && isEmpty(password)) {
+            Toast t = Toast.makeText(this, "Please enter your username and password", Toast.LENGTH_SHORT);
             t.show();
             return false;
         }
-        if (isEmpty(password)) {
-            Toast t = Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT);
+        else if (isEmpty(username)) {
+            Toast t = Toast.makeText(this, "Please enter your username", Toast.LENGTH_SHORT);
+            t.show();
+            return false;
+        }
+        else if (isEmpty(password)) {
+            Toast t = Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT);
             t.show();
             return false;
         }

@@ -34,4 +34,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="92dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
