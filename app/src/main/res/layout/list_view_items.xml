@@ -1,40 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff">
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:text="Demo"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="left|center_vertical"
+        android:padding="5dp"
+        android:text="Name"
         android:textColor="#000"
+        android:textSize="12sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/price"
         android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="29dp"
-        android:layout_toStartOf="@+id/priceChange"
-        android:layout_toLeftOf="@+id/priceChange"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
         android:gravity="center"
         android:padding="5dp"
-        android:text="Demo"
-        android:textColor="#000" />
+        android:text="Price"
+        android:textColor="#000"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/priceChange"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/price"
         android:layout_alignParentRight="true"
         android:layout_marginRight="0dp"
         android:gravity="center"
         android:padding="5dp"
-        android:text="Demo"
-        android:textColor="#000" />
+        android:text="(Price Change)"
+        android:textColor="#000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="0dp"
+        android:gravity="left|center_vertical"
+        android:text="(Full Name)"
+        android:textSize="12sp"
+        tools:layout_below="@id/name" />
 
 </RelativeLayout>

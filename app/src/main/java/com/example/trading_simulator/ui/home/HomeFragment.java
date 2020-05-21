@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment {
     String[] stockName = {"APPL", "BA", "BLK", "TSLA", "GOOGL","GS", "MS", "JPM", "AAL", "CVX","XOM", "NFLX", "ZM", "DAL", "UBER"};//fruit names array
     ListView simpleListView;
     SwipeRefreshLayout swipeRefreshLayout;
+    int oldprice = 500;
 
     private HomeViewModel homeViewModel;
 
@@ -49,15 +50,14 @@ public class HomeFragment extends Fragment {
         });
 
 
+        // Swipe refresh
 
         swipeRefreshLayout = root.findViewById(R.id.simpleSwipeRefreshLayout);
 
         final StockPriceAccesser accesser = new RandomStockPriceGenerator();
         simpleListView=(ListView)root.findViewById(R.id.simpleListView);
 
-
         showListView(accesser);
-
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+
         //perform listView item click event
 
         simpleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

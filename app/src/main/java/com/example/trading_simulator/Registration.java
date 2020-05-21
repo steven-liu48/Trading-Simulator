@@ -25,10 +25,11 @@ public class Registration extends AppCompatActivity {
         create_account.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                checkDataEntered();
-                System.out.println("------------------User info: " + username.getText() + " " + password.getText() + "------------");
-                Intent i = new Intent(view.getContext(), MainActivity.class);
-                startActivity(i);
+                if (checkDataEntered()){
+                    System.out.println("------------------User name: " + username.getText() + " Password: " + password.getText() + "------------");
+                    Intent i = new Intent(view.getContext(), MainActivity.class);
+                    startActivity(i);
+                }
             }
         });
 
