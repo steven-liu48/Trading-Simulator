@@ -10,33 +10,41 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Registration extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     EditText username;
     EditText password;
-    EditText confirm_password;
-    Button create_account;
+    Button login;
+    Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_login);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        confirm_password = findViewById(R.id.confirm_password);
-        create_account = findViewById(R.id.create_account);
+        login = findViewById(R.id.login);
+        register = findViewById(R.id.register);
 
-        create_account.setOnClickListener(new View.OnClickListener(){
+
+        login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 if (checkDataEntered()){
                     System.out.println("------------------User name: " + username.getText() + " Password: " + password.getText() + "------------");
-                    Intent i = new Intent(view.getContext(), Login.class);
+                    Intent i = new Intent(view.getContext(), MainActivity.class);
                     startActivity(i);
                 }
             }
         });
 
+        register.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i = new Intent(view.getContext(), Registration.class);
+                startActivity(i);
+            }
+        });
     }
 
     boolean isEmpty(EditText text) {
@@ -45,28 +53,21 @@ public class Registration extends AppCompatActivity {
     }
 
     boolean checkDataEntered(){
-        if (isEmpty(username)) {
+        if (isEmpty(username) && isEmpty(password)) {
+            Toast t = Toast.makeText(this, "Please enter your username and password", Toast.LENGTH_SHORT);
+            t.show();
+            return false;
+        }
+        else if (isEmpty(username)) {
             Toast t = Toast.makeText(this, "Please enter your username", Toast.LENGTH_SHORT);
             t.show();
             return false;
         }
-        if (isEmpty(password)) {
+        else if (isEmpty(password)) {
             Toast t = Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT);
             t.show();
             return false;
         }
-        if (isEmpty(confirm_password)) {
-            Toast t = Toast.makeText(this, "Please enter your password again", Toast.LENGTH_SHORT);
-            t.show();
-            return false;
-        }
-        if (!password.getText().toString().equals(confirm_password.getText().toString())){
-            Toast t = Toast.makeText(this, "Your two attempts don't match", Toast.LENGTH_SHORT);
-            t.show();
-            return false;
-        }
-        Toast t = Toast.makeText(this, "Succeeded! You can login now.", Toast.LENGTH_SHORT);
-        t.show();
         return true;
     }
 }

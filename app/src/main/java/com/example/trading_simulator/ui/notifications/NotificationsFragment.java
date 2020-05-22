@@ -11,13 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.trading_simulator.Login;
 import com.example.trading_simulator.R;
 import com.example.trading_simulator.Registration;
 
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
-    Button register;
+    Button login;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
@@ -26,11 +27,11 @@ public class NotificationsFragment extends Fragment {
 
 
         // On Click: open the registration page
-        register = root.findViewById(R.id.register);
-        register.setOnClickListener(new View.OnClickListener(){
+        login = root.findViewById(R.id.register);
+        login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent i = new Intent(view.getContext(), Registration.class);
+                Intent i = new Intent(view.getContext(), Login.class);
                 startActivity(i);
             }
         });
@@ -38,6 +39,4 @@ public class NotificationsFragment extends Fragment {
 
         return root;
     }
-
-
 }
