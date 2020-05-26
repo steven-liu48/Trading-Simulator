@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class HomeFragment extends Fragment {
 
     ListView simpleListView;
     SwipeRefreshLayout swipeRefreshLayout;
+    SearchView simpleSearchView;
 
     private HomeViewModel homeViewModel;
 
@@ -68,6 +70,9 @@ public class HomeFragment extends Fragment {
                 //Toast.makeText(getContext(),stockName[i], Toast.LENGTH_LONG).show();//show the selected image in toast according to position
             }
         });
+
+        // SearchView
+        //simpleListView = root.findViewById(R.id.simpleSearchView);
 
         return root;
     }

@@ -15,7 +15,8 @@
         android:text="Name"
         android:textColor="#000"
         android:textSize="12sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginStart="6dp" />
 
     <TextView
         android:id="@+id/price"
@@ -26,7 +27,8 @@
         android:padding="5dp"
         android:text="Price"
         android:textColor="#000"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/priceChange"
@@ -39,7 +41,9 @@
         android:padding="5dp"
         android:text="(Price Change)"
         android:textColor="#000"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp" />
 
     <TextView
         android:id="@+id/fullName"
@@ -51,6 +55,7 @@
         android:gravity="left|center_vertical"
         android:text="(Full Name)"
         android:textSize="12sp"
-        tools:layout_below="@id/name" />
+        tools:layout_below="@id/name"
+        android:layout_marginStart="10dp" />
 
 </RelativeLayout>
