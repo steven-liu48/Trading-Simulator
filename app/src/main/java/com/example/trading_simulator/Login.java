@@ -39,14 +39,18 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                //if (checkDataEntered()){
-                    MyClientTask myClientTask = new MyClientTask("10.0.2.2", 12345);
-                    myClientTask.execute();
+                if (checkDataEntered()){
+                    // Check if user exists
+                    //MyClientTask myClientTask = new MyClientTask("", 0, "CHECKUSR", username.toString(), null);
+                    //myClientTask.execute();
+                    // TODO: If exists, get the password of the user and check if it matches the user input
+                    if (true){
+                        MyClientTask myClientTask2 = new MyClientTask("", 0, "GETPW", username.toString(), null);
+                    }
 
-                    System.out.println("------------------User name: " + username.getText() + " Password: " + password.getText() + "------------");
                     Intent i = new Intent(view.getContext(), MainActivity.class);
                     startActivity(i);
-                //}
+                }
             }
         });
 
@@ -83,71 +87,5 @@ public class Login extends AppCompatActivity {
         return true;
     }
 
-    public class MyClientTask extends AsyncTask<Void, Void, Void> {
 
-        String dstAddress;
-        int dstPort;
-        String response = "";
-
-        MyClientTask(String addr, int port){
-            dstAddress = addr;
-            dstPort = port;
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            Socket socket = null;
-
-            try {
-                socket = new Socket(dstAddress, dstPort);
-                //OutputStreamWriter osw;
-                //osw =new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
-                //String str = "OK";
-                //osw.write(str, 0, str.length());
-
-//                ByteArrayOutputStream byteArrayOutputStream =
-//                        new ByteArrayOutputStream(1024);
-//                byte[] buffer = new byte[1024];
-//
-//                int bytesRead;
-//                InputStream inputStream = socket.getInputStream();
-//
-//                /*
-//                 * notice:
-//                 * inputStream.read() will block if no data return
-//                 */
-//                while ((bytesRead = inputStream.read(buffer)) != -1){
-//                    byteArrayOutputStream.write(buffer, 0, bytesRead);
-//                    response += byteArrayOutputStream.toString("UTF-8");
-//                }
-
-            } catch (UnknownHostException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                response = "UnknownHostException: " + e.toString();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                response = "IOException: " + e.toString();
-            }finally{
-                if(socket != null){
-                    try {
-                        socket.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return null;
-        }
-//
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            textResponse.setText(response);
-//            super.onPostExecute(result);
-//        }
-
-    }
 }
