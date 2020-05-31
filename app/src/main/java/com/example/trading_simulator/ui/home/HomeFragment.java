@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
         simpleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(getContext(),stockName[i], Toast.LENGTH_LONG).show();//show the selected image in toast according to position
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();//show the selected image in toast according to position
             }
         });
 
@@ -84,19 +84,6 @@ public class HomeFragment extends Fragment {
      * @param accessor The accessor to the stock price
      */
     private void showListView(StockPriceAccesser accessor, View view) {
-//        ArrayList<HashMap<String,String>> arrayList=new ArrayList<>();
-//        for (int i=0;i<stockName.length;i++)
-//        {
-//            HashMap<String,String> hashMap=new HashMap<>();//create a hashmap to store the data in key value pair
-//            hashMap.put("name",stockName[i]);
-//            hashMap.put("price",String.format("$%.2f", accesser.getCurrentPrice(stockName[i])));
-//            arrayList.add(hashMap);//add the hashmap into arrayList
-//        }
-//        String[] from={"name","price"};//string array
-//        int[] to={R.id.name,R.id.price};//int array of views id's
-//        SimpleAdapter simpleAdapter=new SimpleAdapter(getContext(),arrayList,R.layout.list_view_items,from,to);//Create object and set the parameters for simpleAdapter
-//        simpleListView.setAdapter(simpleAdapter);//sets the adapter for listView
-
         // Update stock prices
         // Update all Prices
         for (Stock s: stockList){

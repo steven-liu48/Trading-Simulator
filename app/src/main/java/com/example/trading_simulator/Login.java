@@ -15,6 +15,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -40,16 +41,57 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if (checkDataEntered()){
-                    // Check if user exists
-                    //MyClientTask myClientTask = new MyClientTask("", 0, "CHECKUSR", username.toString(), null);
-                    //myClientTask.execute();
-                    // TODO: If exists, get the password of the user and check if it matches the user input
-                    if (true){
-                        MyClientTask myClientTask2 = new MyClientTask("", 0, "GETPW", username.toString(), null);
-                    }
+                    // Use socket connection to check if account name has been taken, and/or create new account
+                    Socket socket = null;
+                    String dstAddress = "";
+                    int dstPort = 0;
+                    String response = "";
 
-                    Intent i = new Intent(view.getContext(), MainActivity.class);
-                    startActivity(i);
+                    try {
+                        socket = new Socket(dstAddress, dstPort);
+                        // Send message to check if user exists
+                        OutputStreamWriter osw;
+                        osw = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
+                        String str = "CHECKUSR\n" + username; // The message to be sent
+                        System.out.println(str); // Print out message
+                        osw.write(str, 0, str.length()); // Send the message
+                        // Get reply from server
+                        InputStreamReader in = new InputStreamReader(socket.getInputStream());
+                        str = in.toString();
+                        System.out.println(str);
+                        // ...and act accordingly
+                        if (str.equals(1)){ // The user name exists
+                            str = "GETPW\n" + username;
+                            System.out.println(str);
+                            osw.write(str, 0, str.length()); // Send the message and get the password
+                            in = new InputStreamReader(socket.getInputStream()); // Get the message back
+                            str = in.toString();
+                            System.out.println(str);
+                            if (str.equals(password.toString())){
+                                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(view.getContext(), MainActivity.class);
+                                startActivity(i);
+                            }
+                        } else if (str.equals(0)){ // The user name does not exist
+                            Toast.makeText(getApplicationContext(), "The user name you input does not exist. Please input again", Toast.LENGTH_SHORT).show();
+                        } else { // Errors occur
+                            Toast.makeText(getApplicationContext(), "Error. Please input again", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (UnknownHostException e) {
+                        e.printStackTrace();
+                        response = "UnknownHostException: " + e.toString();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        response = "IOException: " + e.toString();
+                    }finally{
+                        if(socket != null){
+                            try {
+                                socket.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
             }
         });

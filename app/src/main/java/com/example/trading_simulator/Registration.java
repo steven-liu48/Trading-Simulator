@@ -41,27 +41,32 @@ public class Registration extends AppCompatActivity {
                     String dstAddress = "";
                     int dstPort = 0;
                     String response = "";
+
                     try {
                         socket = new Socket(dstAddress, dstPort);
-                        // Send message
+                        // Send message to check if user exists
                         OutputStreamWriter osw;
                         osw = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
                         String str = "CHECKUSR\n" + username; // The message to be sent
                         System.out.println(str); // Print out message
                         osw.write(str, 0, str.length()); // Send the message
-                        // Get message
+                        // Get reply from server
                         InputStreamReader in = new InputStreamReader(socket.getInputStream());
                         str = in.toString();
                         System.out.println(str);
+                        // ...and act accordingly
                         if (str.equals(1)){ // The user name exists
-                            // Prompts the user to input again and close connection
+                            Toast.makeText(getApplicationContext(), "The username already exists. Please input again", Toast.LENGTH_SHORT).show();
                         } else if (str.equals(0)){ // The user name does not exist
-                            // Add the user to the database
-                            str = "ADDUSR\n" + username + password; // The message to be sent
-                            System.out.println(str); // Print out message
-                            osw.write(str, 0, str.length()); // Send the message
+                            str = "ADDUSR\n" + username + password;
+                            System.out.println(str);
+                            osw.write(str, 0, str.length()); // Send the message and add the user to the SQL server
+                            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                            // Go to login
+                            Intent i = new Intent(view.getContext(), Login.class);
+                            startActivity(i);
                         } else { // Errors occur
-                            // Prompts the user to input again and notify the user that there's an error on the server side, and then close the connection
+                            Toast.makeText(getApplicationContext(), "Error. Please input again", Toast.LENGTH_SHORT).show();
                         }
                     } catch (UnknownHostException e) {
                         e.printStackTrace();
@@ -78,9 +83,7 @@ public class Registration extends AppCompatActivity {
                             }
                         }
                     }
-                    System.out.println("------------------User name: " + username.getText() + " Password: " + password.getText() + "------------");
-                    Intent i = new Intent(view.getContext(), Login.class);
-                    startActivity(i);
+
                 }
             }
         });
