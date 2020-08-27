@@ -1,6 +1,4 @@
-README
-
-This is a trading simulator on Android.
+This is a trading simulator on Android. (Under development)
 
 Team Members:
 Jiasheng Hu, College of Engineering, University of Illinois at Urbana-Champaign
